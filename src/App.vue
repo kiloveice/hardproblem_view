@@ -1,16 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!--  <img alt="Vue logo" src="./assets/logo.png">-->
+  <!--  <el-header>-->
+  <!--    <div>-->
+  <!--      这里放导航-->
+  <!--    </div>-->
+  <!--  </el-header>-->
+  <el-container>
+    <el-aside width=null>
+      <menu-router></menu-router>
+    </el-aside>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import MenuRouter from "@/router/MenuRouter";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: {MenuRouter},
 }
 </script>
 
