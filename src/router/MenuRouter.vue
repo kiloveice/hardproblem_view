@@ -2,7 +2,12 @@
   <el-button small
              @click="collapse"
              class="collapse-button"
-             v-if="true">菜单
+             v-if="true">
+    <template #icon>
+      <el-icon>
+        <expand/>
+      </el-icon>
+    </template>
   </el-button>
   <el-menu
       default-active="2"
@@ -21,8 +26,11 @@
 </template>
 
 <script>
+import {Expand} from "@element-plus/icons-vue"
+
 export default {
   name: "MenuRouter",
+  components: {Expand},
   data() {
     return {
       isCollapse: true,

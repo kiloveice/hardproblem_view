@@ -30,7 +30,7 @@ export default {
     putTag() {
       axios.post(process.env.VUE_APP_API + "/tag/put", {
         tag: this.tagName
-      }).then(this.reload());
+      }).then(this.reload);
     }
   },
   mounted() {

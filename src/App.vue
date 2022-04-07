@@ -13,6 +13,15 @@
       <router-view></router-view>
     </el-main>
   </el-container>
+  <el-divider border-style="dashed"></el-divider>
+  <div>
+    今天吃什么呢？
+  </div>
+  <div>
+    <font color="gray" size="1">
+      Copyright © 2022 - ? nightsnowy
+    </font>
+  </div>
 </template>
 
 <script>
