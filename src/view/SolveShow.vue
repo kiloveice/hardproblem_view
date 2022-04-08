@@ -9,7 +9,7 @@
     <el-card shadow="never"> 价格：{{ price }}</el-card>
   </el-row>
   <el-row :span="8">
-    <el-card shadow="never"> {{ description }}</el-card>
+    <el-card shadow="never" class="text-with-n"> {{ description }}</el-card>
   </el-row>
   <tag-show ref="tags"></tag-show>
   <el-button @click="goHome">再来一次</el-button>
@@ -55,5 +55,8 @@ export default {
 </script>
 
 <style scoped>
-
+.text-with-n {
+  white-space: pre-line;
+  text-align: left;
+}
 </style>
