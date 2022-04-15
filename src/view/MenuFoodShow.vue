@@ -1,6 +1,6 @@
 <template>
   <el-tag :key="menuName" class="mx-1" effect="dark" size="large">{{ menuName }}</el-tag>
-  <food-table-show ref="foodTable"></food-table-show>
+  <food-table-show ref="foodTable" @delete-food="deleteFoodComfirm"></food-table-show>
   <el-select v-model="foodId" filterable placeholder="Select">
     <el-option
         v-for="item in foodList"
@@ -15,6 +15,7 @@
 <script>
 import FoodTableShow from "@/components/FoodTableShow";
 import axios from "axios";
+import {ElMessageBox} from "element-plus";
 
 export default {
   name: "MenuFoodShow",
@@ -54,6 +55,25 @@ export default {
       axios.post(process.env.VUE_APP_API + "/menu/get/by_menu_id", {
         menuId: this.menuId
       }).then(this.setMenuName);
+    },
+    deleteFoodComfirm(food) {
+      ElMessageBox.confirm(
+          '确定从菜单中删除该食物吗',
+          '警告',
+          {
+            confirmButtonText: '删除',
+            cancelButtonText: '取消',
+            type: 'warning',
+          }
+      ).then(() => {
+        axios.post(process.env.VUE_APP_API + "/menu/delete/food", {
+          menuId: this.menuId,
+          foodId: food.id
+        }).then(() => {
+          this.$router.go(0);
+        })
+      }).catch(() => {
+      });
     }
   },
   mounted() {

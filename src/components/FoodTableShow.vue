@@ -5,8 +5,12 @@
     <el-table-column prop="description" label="Description"/>
     <el-table-column prop="score" label="Score" width="180"/>
     <el-table-column prop="price" label="Price" width="180"/>
-    <el-table-column width="150">
+    <el-table-column width="200">
       <template #default="scope">
+        <el-button size="small" type="danger" @click="$emit('deleteFood',scope.row)"
+        >删除
+        </el-button
+        >
         <el-button size="small" @click="editFood(scope.row)"
         >编辑
         </el-button
