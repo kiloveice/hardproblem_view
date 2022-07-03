@@ -19,8 +19,9 @@
       <el-checkbox-group v-model="tagIds">
         <el-checkbox v-for="i in tagList"
                      :key="i.id"
-                     :label="i.tag"
-                     :value="i.id"></el-checkbox>
+                     :label="i.id"
+                     :value="i.id">{{ i.tag }}
+        </el-checkbox>
       </el-checkbox-group>
     </el-form-item>
     <el-form-item label="启用标签">
@@ -85,8 +86,13 @@ export default {
         res.tag = this.tagIds;
       }
       if (!this.reverseFlag) {
-        axios.post(process.env.VUE_APP_API + "/food/solve", res)
-            .then(this.setAnswer)
+        if (!this.tagFlag || this.tagIds.length === 0) {
+          axios.post(process.env.VUE_APP_API + "/food/solve", res)
+              .then(this.setAnswer)
+        } else {
+          axios.post(process.env.VUE_APP_API + "/food/solve/tag", res)
+              .then(this.setAnswer)
+        }
       } else {
         axios.post(process.env.VUE_APP_API + "/food/solve/tag/reverse", res)
             .then(this.setAnswer)
