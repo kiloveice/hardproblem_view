@@ -18,6 +18,7 @@
 <script>
 import TagShow from "@/components/TagShow";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default {
   name: "SolveShow",
@@ -45,10 +46,15 @@ export default {
   },
   mounted() {
     this.id = parseInt(this.$route.query.id);
-    axios.post(process.env.VUE_APP_API + "/food/get/by_id",
-        {
-          foodId: this.id
-        }).then(this.setFood);
+    const res = JSON.parse(Cookies.get("solve"));
+    if (res.data.data.id === this.id) {
+      this.setFood(res);
+    } else {
+      axios.post(process.env.VUE_APP_API + "/food/get/by_id",
+          {
+            foodId: this.id
+          }).then(this.setFood);
+    }
     this.$refs.tags.getTagByFoodId(this.id);
   }
 }

@@ -49,6 +49,7 @@
 <script>
 // import router from "@/router/router";
 import axios from "axios";
+import Cookies from "js-cookie"
 
 export default {
   name: "SolveProblem",
@@ -72,6 +73,7 @@ export default {
       this.tagList = res.data.data;
     },
     setAnswer: function (res) {
+      Cookies.set("solve", JSON.stringify(res));
       this.$router.push({
         name: "answer",
         query: {id: res.data.data.id}
