@@ -47,7 +47,7 @@ export default {
   mounted() {
     this.id = parseInt(this.$route.query.id);
     const res = JSON.parse(Cookies.get("solve"));
-    if (res.data.data.id === this.id) {
+    if (Number(res.data.data.id) === this.id) {
       this.setFood(res);
     } else {
       axios.post(process.env.VUE_APP_API + "/food/get/by_id",
