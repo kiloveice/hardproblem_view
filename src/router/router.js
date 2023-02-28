@@ -10,6 +10,8 @@ import MenuUpdate from "@/view/MenuUpdate";
 import MenuCreate from "@/view/MenuCreate";
 import SolveShow from "@/view/SolveShow";
 import TagAll from "@/view/TagAll";
+import SignUpPage from "@/view/account/SignUpPage";
+import SignInPage from "@/view/account/SignInPage";
 
 const routes = [
     {
@@ -66,6 +68,16 @@ const routes = [
         path: "/tag",
         name: "tag",
         component: TagAll
+    },
+    {
+        path: "/signup",
+        name: "signUp",
+        component: SignUpPage
+    },
+    {
+        path: "/signin",
+        name:"signIn",
+        component: SignInPage
     }
 ];
 
