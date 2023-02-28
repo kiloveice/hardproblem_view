@@ -4,6 +4,7 @@
       <el-col>
         <div style="text-align: center">{{ title }} {{ nickname }}</div>
         <div style="text-align: right" v-if="!loginFlag">
+          <el-button @click="signUp">注册</el-button>
           <el-button @click="signIn">登录！</el-button>
         </div>
         <div style="text-align: right" v-if="loginFlag">
@@ -58,6 +59,9 @@ export default {
               this.$router.go(0);
             }
           });
+    },
+    signUp: function () {
+      this.$router.push({name: "signUp"});
     }
   }
 }

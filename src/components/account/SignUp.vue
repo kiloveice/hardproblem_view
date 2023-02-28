@@ -35,7 +35,7 @@
   <el-alert :title="error" type="error" :closable="false" v-if="error.length!==0"/>
   <el-dialog v-model="success" title="注册成功">
     <span>
-      {{ this.username }} 注册成功！请自行跳转界面。
+      {{ this.username }} 注册成功！3秒后自动跳转到主页。
       不要重复注册。
     </span>
   </el-dialog>
@@ -130,7 +130,8 @@ export default {
             this.success = true;
             setTimeout(() => {
               this.success = false;
-            },3000);
+              this.$router.push({name: "solve"});
+            }, 3000);
           } else {
             this.error = "注册失败！请重新注册";
           }

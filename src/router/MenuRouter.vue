@@ -61,10 +61,6 @@ export default {
           name: "标签管理",
           route: {name: "tag"}
         },
-        {
-          name: "注册",
-          route: {name: "signUp"}
-        }
       ],
     }
   },
