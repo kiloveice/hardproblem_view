@@ -33,8 +33,6 @@ export default {
           id: food.id
         }).then((res) => {
           res = res.data;
-          console.log(res);
-          console.log(res.message);
           if (res.code === "200") {
             this.$router.go(0);
           } else {

@@ -17,7 +17,10 @@ export default {
     }
   },
   mounted() {
-    this.errorText = this.message;
+    this.errorText = this.$route.query.message;
+    if (this.errorText == null) {
+      this.errorText = "";
+    }
   }
 }
 </script>
