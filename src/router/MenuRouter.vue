@@ -60,7 +60,7 @@ export default {
         {
           name: "标签管理",
           route: {name: "tag"}
-        }
+        },
       ],
     }
   },

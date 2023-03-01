@@ -1,10 +1,5 @@
 <template>
-  <!--  <img alt="Vue logo" src="./assets/logo.png">-->
-  <!--  <el-header>-->
-  <!--    <div>-->
-  <!--      这里放导航-->
-  <!--    </div>-->
-  <!--  </el-header>-->
+  <wte-header></wte-header>
   <el-container>
     <el-aside width=null>
       <menu-router></menu-router>
@@ -27,10 +22,11 @@
 <script>
 
 import MenuRouter from "@/router/MenuRouter";
+import WteHeader from "@/components/header/wteHeader";
 
 export default {
   name: 'App',
-  components: {MenuRouter},
+  components: {WteHeader, MenuRouter},
 }
 </script>
 
@@ -41,6 +37,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 1px;
 }
 </style>
