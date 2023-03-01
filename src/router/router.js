@@ -12,6 +12,7 @@ import SolveShow from "@/view/SolveShow";
 import TagAll from "@/view/TagAll";
 import SignUpPage from "@/view/account/SignUpPage";
 import SignInPage from "@/view/account/SignInPage";
+import ErrorPage from "@/view/error/ErrorPage";
 
 const routes = [
     {
@@ -76,8 +77,14 @@ const routes = [
     },
     {
         path: "/signin",
-        name:"signIn",
+        name: "signIn",
         component: SignInPage
+    },
+    {
+        path: "/error",
+        name: "errorPage",
+        component: ErrorPage,
+        props: { default: true, sidebar: false }
     }
 ];
 
