@@ -74,7 +74,7 @@ export default {
       }
       axios.post(process.env.VUE_APP_API + "/account/check/username",
           {username: this.username})
-          .then((res) => {
+          .then(async (res) => {
             res = res.data;
             if (res.code === "200") {
               this.usernameError = "";
@@ -123,7 +123,7 @@ export default {
           username: this.username,
           nickname: this.nickname,
           password: this.password
-        }).then((res) => {
+        }).then(async (res) => {
           res = res.data;
           if (res.code === "200") {
             this.error = "";

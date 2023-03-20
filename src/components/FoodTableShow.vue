@@ -35,24 +35,24 @@ export default {
     }
   },
   methods: {
-    setFood: function (res) {
+    setFood: async function (res) {
       this.foodList = res.data.data;
     },
-    editFood: function (food) {
-      this.$router.push({
+    editFood: async function (food) {
+      await this.$router.push({
         name: "foodEdit", params: {id: food.id}
       });
     },
-    foodTags: function (food) {
-      this.$router.push({
+    foodTags: async function (food) {
+      await this.$router.push({
         name: "foodTagShow", params: {id: food.id}
       });
     },
-    getAllFood: function () {
+    getAllFood: async function () {
       axios.post(process.env.VUE_APP_API + "/food/get", {})
           .then(this.setFood);
     },
-    getFoodByMenuId: function (id) {
+    getFoodByMenuId: async function (id) {
       axios.post(process.env.VUE_APP_API + "/menu/by_menu_id", {
         menuId: parseInt(id)
       }).then(this.setFood);

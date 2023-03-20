@@ -41,7 +41,7 @@ export default {
       axios.post(process.env.VUE_APP_API + "/account/login", {
         username: this.username,
         password: this.password
-      }).then((res) => {
+      }).then(async (res) => {
         res = res.data;
         if (res.code === "200") {
           this.error = "";
@@ -50,7 +50,7 @@ export default {
           Cookies.set("nickname", account.nickname);
           Cookies.set("role", account.role);
           eventBus.emit("loginSuccessfully");
-          this.$router.push({name: "solve"});
+          await this.$router.push({name: "solve"});
         } else {
           this.error = "账号或密码错误！";
         }

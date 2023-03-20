@@ -19,7 +19,7 @@ export default {
     this.$refs.table.getAllFood();
   },
   methods: {
-    deleteFoodComfirm(food) {
+    async deleteFoodComfirm(food) {
       ElMessageBox.confirm(
           '确定删除该食物吗',
           '警告',
@@ -28,15 +28,15 @@ export default {
             cancelButtonText: '取消',
             type: 'warning',
           }
-      ).then(() => {
+      ).then(async () => {
         axios.post(process.env.VUE_APP_API + "/admin/delete/food", {
           id: food.id
-        }).then((res) => {
+        }).then(async (res) => {
           res = res.data;
           if (res.code === "200") {
             this.$router.go(0);
           } else {
-            this.$router.push({name: "errorPage", query: {message: res.message}});
+            await this.$router.push({name: "errorPage", query: {message: res.message}});
           }
         });
       }).catch(() => {

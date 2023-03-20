@@ -29,34 +29,34 @@ export default {
     }
   },
   methods: {
-    setFoods: function (res) {
+    setFoods: async function (res) {
       this.foodList = res.data.data;
     },
-    getAllFoods: function () {
+    getAllFoods: async function () {
       axios.post(process.env.VUE_APP_API + "/food/get", {})
           .then(this.setFoods);
     },
-    reload: function () {
+    reload: async function () {
       this.$router.go(0);
     },
-    addFood: function () {
+    addFood: async function () {
       axios.post(process.env.VUE_APP_API + "/menu/add_food", {
         foodId: this.foodId,
         menuId: this.menuId
       }).then(this.reload);
     },
-    setMenuId(id) {
+    async setMenuId(id) {
       this.menuId = parseInt(id);
     },
-    setMenuName(res) {
+    async setMenuName(res) {
       this.menuName = res.data.data.name;
     },
-    getMenuName() {
+    async getMenuName() {
       axios.post(process.env.VUE_APP_API + "/menu/get/by_menu_id", {
         menuId: this.menuId
       }).then(this.setMenuName);
     },
-    deleteFoodComfirm(food) {
+    async deleteFoodComfirm(food) {
       ElMessageBox.confirm(
           '确定从菜单中删除该食物吗',
           '警告',
@@ -65,14 +65,14 @@ export default {
             cancelButtonText: '取消',
             type: 'warning',
           }
-      ).then(() => {
+      ).then(async () => {
         axios.post(process.env.VUE_APP_API + "/menu/delete/food", {
           menuId: this.menuId,
           foodId: food.id
         }).then(() => {
           this.$router.go(0);
         })
-      }).catch(() => {
+      }).catch(async () => {
       });
     }
   },

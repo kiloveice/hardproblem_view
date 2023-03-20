@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    post() {
+    async post() {
       if (this.editFlag) {
         axios.post(process.env.VUE_APP_API + "/menu/update", this.getData())
             .then(this.$router.back);
@@ -43,20 +43,20 @@ export default {
             .then(this.$router.back);
       }
     },
-    setData(res) {
+    async setData(res) {
       res = res.data.data;
       this.id = res.id;
       this.name = res.name;
       this.description = res.description;
     },
-    getData() {
+    async getData() {
       return {
         id: this.id,
         name: this.name,
         description: this.description
       }
     },
-    setEditMode(id) {
+    async setEditMode(id) {
       this.editFlag = true;
       axios.post(process.env.VUE_APP_API + "/menu/get/by_menu_id", {
         menuId: parseInt(id)

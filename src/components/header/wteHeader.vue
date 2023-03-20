@@ -37,10 +37,10 @@ export default {
     this.loginSuccessfully();
   },
   methods: {
-    signIn: function () {
-      this.$router.push({name: "signIn"});
+    signIn: async function () {
+      await this.$router.push({name: "signIn"});
     },
-    loginSuccessfully: function () {
+    loginSuccessfully: async function () {
       if (Cookies.get("username") != null) {
         this.loginFlag = true;
         this.nickname = Cookies.get("nickname");
@@ -48,7 +48,7 @@ export default {
     },
     logout: async function () {
       axios.post(process.env.VUE_APP_API + "/account/logout")
-          .then((res) => {
+          .then(async (res) => {
             res = res.data;
             if (res.code === "200") {
               this.loginFlag = false;
@@ -60,8 +60,8 @@ export default {
             }
           });
     },
-    signUp: function () {
-      this.$router.push({name: "signUp"});
+    signUp: async function () {
+      await this.$router.push({name: "signUp"});
     }
   }
 }

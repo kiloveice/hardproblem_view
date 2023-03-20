@@ -33,19 +33,19 @@ export default {
     }
   },
   methods: {
-    getTags: function () {
-      this.$refs.tagShow.getTagByFoodId(parseInt(this.$route.params.id));
+    getTags: async function () {
+      await this.$refs.tagShow.getTagByFoodId(parseInt(this.$route.params.id));
     },
-    setFood: function (res) {
+    setFood: async function (res) {
       this.foodList.push(res.data.data);
     },
-    setAllTags: function (res) {
+    setAllTags: async function (res) {
       this.tagsList = res.data.data;
     },
-    reload: function () {
+    reload: async function () {
       this.$router.go(0);
     },
-    addTag: function () {
+    addTag: async function () {
       axios.post(process.env.VUE_APP_API + "/food/addtag", {
         foodId: parseInt(this.foodList[0].id),
         tagId: this.tagId
@@ -58,7 +58,7 @@ export default {
     })
         .then(this.setFood);
     this.getTags();
-    axios.get(process.env.VUE_APP_API + "/tag/")
+    axios.post(process.env.VUE_APP_API + "/tag/",{})
         .then(this.setAllTags);
   }
 }

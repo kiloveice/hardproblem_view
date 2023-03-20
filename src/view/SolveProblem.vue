@@ -65,21 +65,21 @@ export default {
     }
   },
   methods: {
-    setMenuList: function (res) {
+    setMenuList: async function (res) {
       this.menuList = res.data.data;
       this.menuId = res.data.data[0].id;
     },
-    setTagList: function (res) {
+    setTagList: async function (res) {
       this.tagList = res.data.data;
     },
-    setAnswer: function (res) {
+    setAnswer: async function (res) {
       Cookies.set("solve", JSON.stringify(res));
-      this.$router.push({
+      await this.$router.push({
         name: "answer",
         query: {id: res.data.data.id}
       });
     },
-    solveProblem: function () {
+    solveProblem: async function () {
       let res = {}
       if (this.menuFlag) {
         res.menu = this.menuId;
@@ -102,12 +102,12 @@ export default {
     }
   },
   mounted() {
-    axios.get(process.env.VUE_APP_API + "/menu/")
+    axios.post(process.env.VUE_APP_API + "/menu/",{})
         .then(this.setMenuList)
         .catch()
         .then(function () {
         });
-    axios.get(process.env.VUE_APP_API + "/tag/")
+    axios.post(process.env.VUE_APP_API + "/tag/",{})
         .then(this.setTagList)
   }
 }

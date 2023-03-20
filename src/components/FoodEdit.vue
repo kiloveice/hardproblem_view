@@ -43,13 +43,13 @@ export default {
   },
   methods: {
     //编辑模式
-    setEditMode: function () {
+    setEditMode: async function () {
       this.editFlag = true;
       axios.post(process.env.VUE_APP_API + "/food/get/by_id",
           {foodId: parseInt(this.$route.params.id)})
           .then(this.setData);
     },
-    setData: function (res) {
+    setData: async function (res) {
       res = res.data;
       this.id = res.data.id;
       this.name = res.data.name;
@@ -57,7 +57,7 @@ export default {
       this.score = res.data.score;
       this.price = res.data.price;
     },
-    getData: function () {
+    getData: async function () {
       return {
         id: this.id,
         name: this.name,
@@ -66,7 +66,7 @@ export default {
         price: this.price
       }
     },
-    post: function () {
+    post: async function () {
       if (this.editFlag) {
         axios.post(process.env.VUE_APP_API + "/food/update", this.getData())
             .then(this.$router.back);

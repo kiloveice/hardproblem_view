@@ -29,23 +29,23 @@ export default {
     }
   },
   methods: {
-    setMenu(res) {
+    async setMenu(res) {
       this.menuList = res.data.data;
     },
-    getAllMenu() {
-      axios.get(process.env.VUE_APP_API + "/menu/")
+    async getAllMenu() {
+      axios.post(process.env.VUE_APP_API + "/menu/",{})
           .then(this.setMenu);
     },
-    menuFood(menu) {
-      this.$router.push({
+    async menuFood(menu) {
+      await this.$router.push({
         name: "menuFoodShow",
         params: {
           id: menu.id
         }
       });
     },
-    editMenu(menu) {
-      this.$router.push({
+    async editMenu(menu) {
+      await this.$router.push({
         name: "menuEdit",
         params: {
           id: menu.id

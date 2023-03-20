@@ -17,14 +17,14 @@ export default {
     }
   },
   methods: {
-    setData: function (res) {
+    setData: async function (res) {
       this.tags = res.data.data;
     },
-    getAllTag: function () {
-      axios.get(process.env.VUE_APP_API + "/tag/")
+    getAllTag: async function () {
+      axios.post(process.env.VUE_APP_API + "/tag/",{})
           .then(this.setData);
     },
-    getTagByFoodId: function (foodId) {
+    getTagByFoodId: async function (foodId) {
       axios.post(process.env.VUE_APP_API + "/tag/by_food_id",
           {foodId: parseInt(foodId)})
           .then(this.setData);
