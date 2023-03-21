@@ -67,11 +67,12 @@ export default {
       }
     },
     post: async function () {
+      let food = await this.getData();
       if (this.editFlag) {
-        axios.post(process.env.VUE_APP_API + "/food/update", this.getData())
+        axios.post(process.env.VUE_APP_API + "/food/update", food)
             .then(this.$router.back);
       } else {
-        axios.post(process.env.VUE_APP_API + "/food/put", this.getData())
+        axios.post(process.env.VUE_APP_API + "/food/put", food)
             .then(this.$router.back);
       }
     }

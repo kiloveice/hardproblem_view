@@ -35,11 +35,12 @@ export default {
   },
   methods: {
     async post() {
+      let data = await this.getData();
       if (this.editFlag) {
-        axios.post(process.env.VUE_APP_API + "/menu/update", this.getData())
+        axios.post(process.env.VUE_APP_API + "/menu/update", data)
             .then(this.$router.back);
       } else {
-        axios.post(process.env.VUE_APP_API + "/menu/put", this.getData())
+        axios.post(process.env.VUE_APP_API + "/menu/put", data)
             .then(this.$router.back);
       }
     },
