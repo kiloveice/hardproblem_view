@@ -48,14 +48,13 @@ export default {
         name: "foodTagShow", params: {id: food.id}
       });
     },
-    getAllFood: async function () {
-      axios.post(process.env.VUE_APP_API + "/food/get", {})
+    getAllFood: async function (data) {
+      axios.post(process.env.VUE_APP_API + "/food/get", data)
           .then(this.setFood);
     },
-    getFoodByMenuId: async function (id) {
-      axios.post(process.env.VUE_APP_API + "/menu/by_menu_id", {
-        menuId: parseInt(id)
-      }).then(this.setFood);
+    getFoodByMenuId: async function (data) {
+      axios.post(process.env.VUE_APP_API + "/menu/by_menu_id", data
+      ).then(this.setFood);
     }
   },
 }

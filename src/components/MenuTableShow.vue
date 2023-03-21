@@ -32,8 +32,8 @@ export default {
     async setMenu(res) {
       this.menuList = res.data.data;
     },
-    async getAllMenu() {
-      axios.post(process.env.VUE_APP_API + "/menu/",{})
+    async getAllMenu(data) {
+      axios.post(process.env.VUE_APP_API + "/menu/",data)
           .then(this.setMenu);
     },
     async menuFood(menu) {

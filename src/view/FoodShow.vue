@@ -1,22 +1,21 @@
 <template>
   <food-table-show ref="table" @deleteFood="deleteFoodComfirm"></food-table-show>
+  <PaginationNormal ref="pagination" @pageChange="pageChange"></PaginationNormal>
 </template>
 
 <script>
 import FoodTableShow from "@/components/FoodTableShow";
 import {ElMessageBox} from "element-plus";
 import axios from "axios";
+import PaginationNormal from "@/components/pagination/PaginationNormal";
 
 export default {
   name: "FoodShow",
-  components: {FoodTableShow},
+  components: {PaginationNormal, FoodTableShow},
   data() {
     return {
       foodList: [],
     }
-  },
-  mounted() {
-    this.$refs.table.getAllFood();
   },
   methods: {
     async deleteFoodComfirm(food) {
@@ -41,7 +40,15 @@ export default {
         });
       }).catch(() => {
       });
-    }
+    },
+    getFoodCount: async function () {
+      axios.get(process.env.VUE_APP_API + "/food/getCount")
+          .then(this.$refs.pagination.handleTotalResponse);
+    },
+    pageChange: async function (data) {
+      await this.$refs.table.getAllFood(data);
+      await this.getFoodCount();
+    },
   }
 }
 </script>

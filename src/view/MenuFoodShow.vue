@@ -1,6 +1,7 @@
 <template>
   <el-tag :key="menuName" class="mx-1" effect="dark" size="large">{{ menuName }}</el-tag>
   <food-table-show ref="foodTable" @delete-food="deleteFoodComfirm"></food-table-show>
+  <PaginationNormal ref="pagination" @pageChange="pageChange"></PaginationNormal>
   <el-select v-model="foodId" filterable placeholder="Select">
     <el-option
         v-for="item in foodList"
@@ -16,10 +17,11 @@
 import FoodTableShow from "@/components/FoodTableShow";
 import axios from "axios";
 import {ElMessageBox} from "element-plus";
+import PaginationNormal from "@/components/pagination/PaginationNormal";
 
 export default {
   name: "MenuFoodShow",
-  components: {FoodTableShow},
+  components: {PaginationNormal, FoodTableShow},
   data() {
     return {
       menuId: 0,
@@ -74,14 +76,27 @@ export default {
         })
       }).catch(async () => {
       });
-    }
+    },
+    async getMenuFoodCount() {
+      axios.get(process.env.VUE_APP_API + "/menu/menuFood/getCount",
+          {
+            params: {
+              menuId: this.$route.params.id,
+            },
+          }).then(this.$refs.pagination.handleTotalResponse);
+    },
+    async pageChange(data) {
+      data.menuId = parseInt(this.$route.params.id);
+      await this.$refs.foodTable.getFoodByMenuId(data);
+      await this.getMenuFoodCount();
+    },
   },
   mounted() {
     this.setMenuId(this.$route.params.id);
     this.getMenuName();
-    this.$refs.foodTable.getFoodByMenuId(
-        this.$route.params.id
-    );
+    // this.$refs.foodTable.getFoodByMenuId(
+    //     this.$route.params.id
+    // );
     this.getAllFoods();
   }
 }
