@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="foodList" style="width: 100%">
+  <el-table :data="foodList" style="width: 100%" class="table-pre-lines">
     <el-table-column prop="id" label="Id" width="180"/>
     <el-table-column prop="name" label="Name" width="180"/>
     <el-table-column prop="description" label="Description"/>
@@ -65,5 +65,7 @@ export default {
 </script>
 
 <style scoped>
-
+.table-pre-lines >>> .cell{
+  white-space: pre-line;
+}
 </style>
