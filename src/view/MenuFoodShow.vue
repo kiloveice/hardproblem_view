@@ -35,7 +35,9 @@ export default {
       this.foodList = res.data.data;
     },
     getAllFoods: async function () {
-      axios.post(process.env.VUE_APP_API + "/food/get", {})
+      axios.post(process.env.VUE_APP_API + "/food/search", {
+        prefix: ""
+      })
           .then(this.setFoods);
     },
     reload: async function () {
